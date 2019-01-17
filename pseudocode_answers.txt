@@ -13,10 +13,10 @@ Programming Assignment
 INPUT first number
 INPUT second number
 CALL greaterNum WITH numbers
-IF the first number is greater than the second number THEN
-  PRINT first number
-ELSE if the second number is greater than the first number THEN
-  PRINT second number
+IF firstNumber > secondNumber THEN
+  PRINT firstNumber
+ELSE if secondNumber > firstNumber THEN
+  PRINT secondNumber
 ELSE 
   PRINT "equal"
 END IF
@@ -36,9 +36,8 @@ function greaterNum(a, b){
 	2. Create a function that prints out the numbers from 1 to 100.
 
 CALL numbers WITHOUT INPUT
-FOR every time the number is less than 101
-  START at 1
-  ADD 1 to numbers total
+  FOR start at index[0] THEN IF number<101 THEN
+  ADD 1 to number total
 END FOR
 RETURN EVERY iteration of numbers
 
@@ -50,13 +49,16 @@ function numbers(){
 
 	3. Create a function that searches for a specific entry in a phonebook.
 
-CALL search and INPUT a string
+CALL search THEN
+  INPUT stringInput
 FOR every number less than the length of phoneBook
-  START at the first item in the phoneBook array
-  ADD 1 to the index
+  START at phoneBook item index 1
+  ADD 1 to index
   RETURN the full item corresponding to the index
 END FOR
-RETURN "contact not found" if the INPUT string does not match an item in phoneBook
+IF stringInput DIFFERENT THAN phoneBook
+  RETURN "contact not found"
+
   
 
 
