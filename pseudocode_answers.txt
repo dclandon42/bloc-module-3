@@ -1,0 +1,79 @@
+Short Answer
+  1.Why do programmers use pseudocode?
+	A: Programmers use pseudocode to explain code in a language meant for people or programmers instead of computers or machines.
+
+  2.If you run pseudocode on your computer what would happen?
+	A: Likely nothing would happen, or an error would return.
+
+Programming Assignment
+	1. Write the following algorithms in pseudocode:
+
+	Create a function that takes two numbers and prints out the greater number.
+
+INPUT first number
+INPUT second number
+CALL greaterNum WITH numbers
+IF the first number is greater than the second number THEN
+  PRINT first number
+ELSE if the second number is greater than the first number THEN
+  PRINT second number
+ELSE 
+  PRINT "equal"
+END IF
+
+function greaterNum(a, b){
+  if(a>b){
+    console.log(a)
+  }else if(a<b){
+    console.log(b)
+  }else{
+    console.log("equal")
+  }
+}
+
+
+
+	2. Create a function that prints out the numbers from 1 to 100.
+
+CALL numbers WITHOUT INPUT
+FOR every time the number is less than 101
+  START at 1
+  ADD 1 to numbers total
+END FOR
+RETURN EVERY iteration of numbers
+
+function numbers(){
+  for(i=1;i<101;i++){
+    console.log(i)
+  }
+}
+
+	3. Create a function that searches for a specific entry in a phonebook.
+
+CALL search and INPUT a string
+FOR every number less than the length of phoneBook
+  START at the first item in the phoneBook array
+  ADD 1 to the index
+  RETURN the full item corresponding to the index
+END FOR
+RETURN "contact not found" if the INPUT string does not match an item in phoneBook
+  
+
+
+var phoneBook = [
+  {name:"John Doe", address:"123 street", phone:"908-848-5578"},
+  {name:"Mimi Flout", address:"889 Ave", phone:"909-832-8838"},
+  {name:"Jenn Lee", address:"446 Blvd.", phone:"104-334-9524"}
+];
+
+function search(lookupName){
+  for(i=0; i < phoneBook.length; i++){
+  if(lookupName == phoneBook[i].name){
+    return(phoneBook[i].name+", "+phoneBook[i].address+", "+phoneBook[i].phone);
+    }
+  }
+            
+  return "contact not found"
+}
+     
+console.log(search("Jenn Lee"))
