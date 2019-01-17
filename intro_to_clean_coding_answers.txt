@@ -1,0 +1,156 @@
+EXERCISES
+
+1. Clean code is having easily readable, maintainable, and simple code. It is more than just functional, it is logical and understandable.
+
+2. The Toyota story made me thing of other possible transportation methods relying on computers. Airplanes use different tools and programs to report the angle, windspeed, plane speed, distance to the ground, weight, etc. If the program used has an error or bug in even one part of one program, and the failsafes do not work properly, this could be terrible. The plane could have all the correct reports but if one tool is not functioning properly, like say the angle of the plane is off a bit, so it has more resistance for the reported windspeed and the pilots miss mark their landing. I am not sure how likely it is this could happen, but given the Toyota article, maybe it is more plausible than I would like to think.
+
+3. I would not consider this clean code. function names should be more verbose than "do" and "z". The nesting is hard to follow.
+
+-CORRECTED VERSION-
+FUNCTION checkEquality(x, y)                    // Creating a new function
+ IF y = "F" THEN                                // Check if y is equal "F"
+   SET convertToCelsius to (x−32) * (5/9)       // Formula to convert degrees fahrenheit to celsius
+     PRINT convertToCelsius                     // Print result
+ ELSE IF y = "C" THEN                           // If y not equal to "F", check if equal to "C"
+   SET convertToCelsius to x * 1.8000 + 32.00   // Formula to convert degrees celsius to fahrenheit
+     PRINT convertToCelsius                     // Print result
+ END IF
+END FUNCTION
+
+4. I wouldn't consider it clean code. The naming is confusing. The if function is wordy. 
+
+FUNCTION calculatePercentage(sum, total)
+ IF total is NOT 0 THEN
+    SET the percentage to (sum / total) * 100)
+ ELSE
+   PRINT "Sorry, cannot divide by 0"
+ END IF
+ PRINT percentage
+END FUNCTION
+
+5.A. 
+FUNCTION checkOutCustomer(subTotal, discountRate, paymentType)
+   PRINT "Your total due is: " + subTotal * discountRate + (subTotal * tax)
+
+   IF paymentType = 'CASH' THEN
+       CALL cashAmount(amount)
+   ELSE IF paymentType = 'CREDIT CARD' THEN
+       CALL creditCardAmount(amount)
+   END IF
+END FUNCTION
+
+FUNCTION cashAmount(amount)
+  PRINT "Change due: " + amount - subTotal * discountRate + (subTotal * tax)
+END FUNCTION
+
+FUNCTION creditCardAmount(amount)
+  PRINT "Your credit card has been charged: " + subTotal * discountRate + (subTotal * tax)
+END FUNCTION
+
+
+5.B.
+
+FUNCTION checkoutBook(book, guest)
+ IF guest.accountActive AND NOT(guest.hasOverdueBooks) AND guest.outstandingFees = 0 THEN
+   CALL issueBook(book, guest)
+ END IF
+ ELSE
+     PRINT "Unable to check out book."
+ END IF
+END FUNCTION
+
+FUNCTION issueBook(book, guest)
+  APPEND book to guest.books
+    SET book.status to "Checked Out"
+    PRINT "Your books have been issued."
+END FUNCTION
+  
+
+5.C.
+
+CLASS BankAccountBalance
+
+ FUNCTION displayBalance
+    PRINT balance
+ END FUNCTION
+
+END CLASS
+
+CLASS accountActions
+
+ FUNCTION deposit(amount)
+    SET balance to balance + amount
+ END FUNCTION
+
+ FUNCTION withdraw(amount)
+     IF balance > amount THEN
+       SET balance to balance - amount
+     END
+ END FUNCTION
+
+END CLASS
+
+CLASS accountOptions
+
+ FUNCTION makeServiceOffer
+     IF NOT(customer.hasCreditCard) THEN
+         CALL offerCreditCard
+     END
+ END FUNCTION
+
+ FUNCTION checkStatus
+     IF NOT(customer.hasCheckingAccount) THEN
+         CALL offerCheckingAccount
+     END
+ END FUNCTION
+
+END CLASS
+
+6.
+
+var numberArray= [10,1,4,6,1,1,2];
+var reducer = (accumulator, currentValue)=>accumulator+currentValue;
+var sum = getSum(numberArray);
+var squareRootOfSum = getSquareRoot(sum);
+var wholeRootNumber = roundSquareRoot(squareRootOfSum);
+
+function getSum(numberArray){
+  return(numberArray.reduce(reducer))
+}
+
+function getSquareRoot(sum){
+  return Math.sqrt(sum)
+}
+
+function roundSquareRoot(squareRootOfSum){
+  return(Math.round(squareRootOfSum))
+}
+
+function findOutPerfectSquare(numberArray){
+  if(squareRootOfSum===wholeRootNumber){
+    console.log(squareRootOfSum)
+  }else{
+    console.log(sum)
+  }
+}
+
+
+
+findOutPerfectSquare(numberArray)
+
+7.
+var array= [10,1,4,6,1,1,2];
+
+function hasDuplicates(array) {
+    var valuesSoFar = [];
+    for (var i = 0; i < array.length; ++i) {
+        var value = array[i];
+        if (valuesSoFar.indexOf(value) !== -1) {
+            return true;
+        }
+        valuesSoFar.push(value);
+    }
+    return false;
+}
+
+console.log(hasDuplicates(array))
