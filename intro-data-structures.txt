@@ -1,0 +1,26 @@
+Exercises
+
+1. 
+a) INIT park_visitors to ["Vivian", "Ava", "Josh", "Patrick", "Mike"]
+
+
+b) SET park_visitors[LAST INDEX] to Mary
+
+
+c) RETURN park_visitors[INDEX OF] Josh
+
+
+d) RETURN park_visitors[INDEX OF] Emily IF Emily is undefined THEN
+    RETURN "Visitor not in line"
+
+
+e) SET park_visitors [SECOND INDEX] to Melissa
+
+
+f) park_visitors SPLICE[Patrick] REMOVES Patrick
+
+2.
+Another great example for modeled using an array data structure would be results of a racing tournament. A driving race cannot result in a tie, and the times and place for each race could be associated with each drivers name.
+
+3. 
+My data structure would allow the developers to clearly see an initial start point of the data. It would also allow them to clearly see how the data is being manipulated, how it interacts with other data and methods, and what the developers should do with the data.
