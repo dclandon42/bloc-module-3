@@ -19,8 +19,37 @@ e) SET park_visitors [SECOND INDEX] to Melissa
 
 f) park_visitors SPLICE[Patrick] REMOVES Patrick
 
+___CODE___
+```javascript
+var parkVisitors = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
+
+parkVisitors.push("Mary");
+
+
+
+function findIndex(name){
+ if((parkVisitors.indexOf(name)) === -1){
+   console.log("Person not in line")
+ }else{
+   console.log(parkVisitors.indexOf(name))
+ }
+};
+
+
+findIndex("Josh");
+
+findIndex("Emily");
+
+parkVisitors.splice(1, 0, "Melissa");
+
+parkVisitors.splice(4, 1)
+
+console.log(parkVisitors);
+
+```
+
 2.
 Another great example for modeled using an array data structure would be results of a racing tournament. A driving race cannot result in a tie, and the times and place for each race could be associated with each drivers name.
 
 3. 
-My data structure would allow the developers to clearly see an initial start point of the data. It would also allow them to clearly see how the data is being manipulated, how it interacts with other data and methods, and what the developers should do with the data.
+My data structure would allow the developers to clearly see an initial start point of the data. It would also allow them to clearly see how the data is being manipulated, how it interacts with other data and methods, and what the developers should do with the data. It would logically give each race car a rank that could simply match the index of the cars label within an array structure. There would be an end and beginning. For future races, it could be updated easily in a very similar fashion to the code in the part one of this exercise (using findIndex, splice, push, etc.)
