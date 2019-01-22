@@ -1,0 +1,212 @@
+###Exercises
+
+1.What is a hash table?
+
+A hash table is a data structure that stores values and links it to a table with an identifying key.
+
+2.What is hashing?
+
+A hashing is the process of converting a value to a fixed length numerical value.
+
+3.How does a hash table store data?
+
+
+They store data by giving each data entry a unique identifying key. This key is used as an identifier for the specific object within a group of other closely related objects. For example bar codes on items at a supermarket all hold the values of the item name, the price, the stock etc.
+
+4.How are hash tables and objects different?
+
+Objects are sort of a container within hash tables. Objects are a subset of hash tables.
+
+5.Determine whether you would use a hash table or an object to store each of the following pieces of data:
+
+	A list of pets and their unique names. Hash Table
+
+	The name, age, and the birthday of your best friend. Object
+
+	The name and location of every company in a given city. Hash Table
+
+	All of the books checked out from a library by a particular individual. Hash Table
+
+	The primary and secondary phone numbers for a contact. Object
+
+6.Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
+
+function hash(key, size) {
+  var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
+  }
+  return hash % size;  
+};
+
+function hashTable (){
+  var container = [];
+  var containerCap = 777;
+  
+  this.set = function(phone, name, customerAddress){
+    var index = hash(phone, containerCap);
+
+    if (container[index] === undefined) {
+      container[index] = [ [phone, name, customerAddress] ];
+    }
+};
+  
+  this.get = function(phone){
+    var index = hash(phone, containerCap);
+
+    if(container[index] === undefined){
+      return "The list of customers is empty";
+    } else {
+      for(var i = 0; i < container[index].length; i++) {
+        if(container[index][i][0] === phone) {
+          return container[index][i][0] + ", " + container[index][i][1] + ", " + container[index][i][2];
+        } else {
+          return "Customer does not exist";
+        }
+      }
+    }
+  };
+}
+
+var customers = new hashTable();
+customers.set("999-999-9999", "Alex", "123 Random St");
+customers.set("222-222-2222", "Sam", "456 Some Ln");
+customers.set("333-333-3333", "Todd", "789 Nowhere Dr");
+customers.set("555-555-5555", "Josh", "012 Circle Ct");
+
+console.log(customers.get("999-999-9999"));
+console.log(customers.get("222-222-2222")); 
+console.log(customers.get("333-333-3333")); 
+console.log(customers.get("555-555-5555"));
+
+7.Build a system that allows a store owner to track their store's inventory using a hash table for storage.
+
+function hash(key, size){
+	var hash = 0;
+	for(var i = 0; i < key.length; i++){
+		hash += key.charCodeAt(i);
+	}
+
+	return hash % size;
+}
+
+function hashTable(){
+	var container = [];
+  var containerCap = 589;
+
+	this.set = function(item, quantity){
+		var index = hash(item, containerCap);
+
+		if(container[index] === undefined){
+			container[index] = [ [item, quantity] ];
+		}
+	};
+
+	this.get = function(item){
+		var index = hash(item, containerCap);
+
+		if(container[index] === undefined){
+    		return "The inventory list is empty";
+  	} else {
+    		for(var i = 0; i < container[index].length; i++) {
+      		if(container[index][i][0] === item) {
+        			return "There's " + container[index][i][1] + " " + container[index][i][0] + " in stock";
+      		} else {
+    				return "Item not found";
+      		}
+    		}
+    } 
+
+  };
+}
+
+var inventory = new hashTable();
+inventory.set("Milk", "20");
+inventory.set("Swiss Cheese", "30");
+inventory.set("Carrots", "5");
+
+console.log(inventory.get("Milk"));
+console.log(inventory.get("Swiss Cheese"));
+console.log(inventory.get("Carrots"));
+
+8.Build a system that allows digital copies of newspapers to be entered and searched by publisher and publication date. Use hash tables to store the necessary data.
+
+function hash(key, size){
+	var hash = 0;
+  for(var i = 0; i < key.length; i++){
+    hash += key.charCodeAt(i);
+  }
+
+  return hash % size;
+}
+
+function hashTableByPublisher(){
+  var container = [];
+  var containerCap = 577;
+
+  this.set = function(publisher, date, article){
+    var index = hash(publisher, containerCap);
+
+    if(container[index] === undefined){
+      container[index] = [ [publisher, date, article] ];
+    }
+  };
+
+  this.get = function(publisher){
+    var index = hash(publisher, containerCap);
+
+    if(container[index] === undefined) {
+        return "The publisher list is empty";
+    } else {
+        for(var i = 0; i < container[index].length; i++) {
+          if(container[index][i][0] === publisher) {
+              return "Publisher: " + container[index][i][0] + ", date published: " + container[index][i][1] + ", article: " + container[index][i][2];
+          } else {
+            return "publisher not found";
+          }
+        }
+    } 
+  };
+}
+
+function hashTableByDate(){
+  var container = [];
+  var containerCap = 577;
+
+  this.set = function(publisher, date, article){
+    var index = hash(date, containerCap);
+
+    if(container[index] === undefined){
+      container[index] = [ [publisher, date, article] ];
+    }
+  };
+
+  this.get = function(date){
+    var index = hash(date, containerCap);
+
+    if(container[index] === undefined) {
+        return "The newspaper list is empty";
+    } else {
+        for(var i = 0; i < container[index].length; i++) {
+          if(container[index][i][1] === date) {
+              return "Publisher: " + container[index][i][0] + ", date published: " + container[index][i][1] + ", article: " + container[index][i][2];
+          } else {
+            return "date not found";
+          }
+        }
+    } 
+  };
+}
+
+var newspaper = new hashTableByPublisher();
+var newspaperDates = new hashTableByDate();
+
+newspaper.set("USA Today", "2001", "blah blah blah");
+newspaper.set("New York Daily News", "2012", "zip zip zip");
+
+newspaperDates.set("USA Today", "2001", "blah blah blah");
+newspaperDates.set("New York Daily News", "2012", "zip zip zip");
+
+console.log(newspaper.get("USA Today"));
+console.log(newspaperDates.get("2012"));
+
