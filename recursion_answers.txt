@@ -1,0 +1,58 @@
+1. Define and compare recursion and iteration.
+
+Recursion is a self calling function that breaks parameters into smaller and smaller parts until it reaches its base cases. Iteration on the other hand is using a loop to repeat a process until a condition is met. 
+
+2. Name five algorithms that are commonly implemented by recursion.
+
+Factorial of a number, greatest common divisor, Fibonacci Numbers, Recursive Binary Search, and Reversing a string
+
+3. When should you use recursion, and when should you avoid recursion? Give examples for each.
+
+We should use recursion when we have a task that can be broken down into several smaller subtasks. We should avoid recursion when space is limited because it generally takes more time and space than iteration.
+
+4. Compare the recursive and iterative solutions to the three algorithms from the checkpoint (factorial, maximum, and fibonacci). What is similar, and what is different?
+
+Factorial: They both fail at negative numbers but in iteration we keep a running result variable.
+Maximum: Iteration is much cleaner here.
+Fibonacci: The iteration form keeps track of two numbers to add, while the recursive breaks down each number to its predecessor and then to that numbers predecessor and on and on if possible. 
+
+5. Given a multi-dimensional collection (such as an array) where the number of dimensions is unknown, write a recursive algorithm to count the number of items in the entire collection.
+
+protocol _Array {
+    var nestingDepth: Int { get }
+}
+
+extension Array : _Array {
+    var nestingDepth: Int {
+        return 1 + ((first as? _Array)?.nestingDepth ?? 0)
+    }
+}
+
+let a = [1, 2, 3]
+print(a.nestingDepth)
+
+let b = [[1], [2, 3], [4]]
+print(b.nestingDepth)
+
+let c = [[[1], [2]], [[3]], [[4], [5]]]
+print(c.nestingDepth)
+
+6. A palindrome is a word or phrase whose spelling is the same either direction (e.g., racecar). Write a recursive algorithm to determine if a given word or phrase is a palindrome.
+
+function palindrome(word) {
+  let stringLength = word.length;
+  console.log(stringLength)
+  if (stringLength === 0 || stringLength === 1) {
+    return true;
+  }
+  if (word[0] === word[stringLength - 1]) {
+    return palindrome(word.slice(1, word.length - 1));
+  }
+  return false;
+}
+
+palindrome('racecar')
+
+7. Google Easter Egg: Google the term "recursion". Google will prompt you with "Did you mean: recursion". Explain why this behavior exhibits properties of recursion.
+
+This is because the definition of recursion is "the repeated application of a recursive procedure or definition" meaning that it is sort of an example of recursion itself by repeating the application. 
