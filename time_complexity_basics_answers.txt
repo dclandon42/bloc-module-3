@@ -1,0 +1,67 @@
+EXERCISES
+
+1. What is time complexity and what is its relation to algorithms?
+
+Time complexity is the measurement used to describe the efficiency of an algorithm. It relates to an algorithm in that it is the runtime it takes the algorithm for the duration of a function.
+
+2. What is runtime?
+
+Runtime is similar to the time complexity. It is the physical time duration of an algorithm.
+
+3. How is the runtime of an algorithm calculated?
+
+Runtime is calculated by adding up the number of instructions an algorithm uses based on a function of the size of the input for the algorithm. 
+
+4. Name the six types of algorithm growth rates we saw in this checkpoint and list them in order of most efficient to least efficient. Now Google another algorithmic growth rate not covered and place it in the correct spot in your list.
+
+From most efficient to least efficient it goes: Constant Growth Rate, Logarithmic Growth Rate, Linear Growth Rate, Log-linear Growth Rate, Quadratic Growth Rate, Exponential Growth Rate. 
+
+Another growth rate type would be Cubic Growth rate, it goes after Quadratic and before exponential.
+
+5. Choose one of the algorithmic growth rates from the last question and make a comparison to a real-life situation.
+
+A hotel room cost. Say a hotel costs $120 each night. Then the cost of the hotel total will grow linearly with the number of nights stayed.  
+
+6. Determine the time complexity of the following snippet of code. It is commonly known as a linear search.
+
+FUNCTION linearSearch(array, target)
+ FOR each number in the array
+   IF number = target THEN
+     RETURN true
+   END IF
+ END FOR
+ RETURN false
+END FUNCTION
+
+It is a constant growth rate. 0(1)
+
+7. Determine the time complexity of the following snippet of code.
+FUNCTION foo(array)
+ FOR each number in the array
+   FOR each number in the array
+     print "Hello"
+   END FOR
+ END FOR
+END FUNCTION
+
+It is a Quadratic Growth Rate 0(n^2)
+
+8. Determine the time complexity of the following snippet of code. It is commonly known as the Fibonacci sequence.
+
+FUNCTION fibonacci(number)
+ IF number < 1 THEN
+   ERROR
+ ELSE IF number = 1 or 2 THEN
+   RETURN 1
+ ELSE
+   CALL fibonacci WITH number - 2 RETURNING twoBack
+   CALL fibonacci WITH number - 1 RETURNING oneBack
+   RETURN twoBack + oneBack
+ END IF
+END FUNCTION
+
+It is a Logarithmic Growth Rate 0(log n).
+
+9. Out of the code snippets you just saw, which is the most time efficient?
+
+The constant is the most time efficient, therefore the first code snippet would be the most time efficient. 
