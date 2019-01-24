@@ -3,13 +3,21 @@ Exercises
 1. Using proper pseudo-code, describe the following primitive algorithms:
 
 ~Making coffee~
-Grind coffee beans till texture is fine.
+check if we have beans
+if we have coffee beans then 
+take them then
+Grind coffee beans till texture is fine
 Add ground coffee beans to filter
 Insert filter into top of coffee maker
 Add water till full
 Wait till coffee fills up pot
+else if no coffee beans then 
+return "No coffee today"
+END if
 If pot is full then
 pour cup of coffee.
+else wait till pot is full
+END IF 
 
 
 ~Washing dishes~
@@ -35,13 +43,13 @@ Stop watering.
 
 2. As with the knot algorithm, there may be more than one way to solve the problem. It is essential to try to pick the best algorithm for a situation. Name three companies who created an algorithm that made them successful, e.g., Google's search algorithm. It doesn't need to be a tech example (such as a recipe or manufacturing a product). Google's algorithm produces more relevant results than other search engines; what about each of your cases make them stand out?
 
-Netflix: Out competes because their instant viewing and lack of commercials solved problems with watching cable television and their wide selection out competes other streaming services.
+Netflix: Out competes because their algorithm allows customers to be shown the most recommended titles to films and shows they watch.
 
-Amazon: Amazons options for products make it easier than competitors to find anything you are looking for. The easy returns and free shipping makes it more efficient to use than competitors.
+Hotel Tonight: Their algorithm to select the cheapest and closest hotel for the night based on star rating for the hotels.
 
-Starbucks: Starbucks' consistency outcompetes more local or fluctuating competitors. Their accessibility in locations makes it easier for them to build a customer base.
+Air BnB: Their algorithm allows users to find a reasonably priced place anywhere in the world and it allows hosts to find guests from all over to stay.
 
 3. Hypothesize about what constitutes an efficient algorithm versus an inefficient algorithm.
 
-I think an efficient algorithm is not only one that solves the problem, but solves it in the most desirable method. There are lots of online stores, but it is amazons ease and selection that makes it the top of its game. What makes one efficient is not only whether it solves the problem, but how simply and effectively it solves the problem.
+I think an efficient algorithm is not only one that solves the problem, but solves it in the most desirable method. There are lots of online stores, but Amazon's ease and selection that makes it the top of its game. What makes one efficient is not only whether it solves the problem, but how simply and effectively it solves the problem.
 
