@@ -23,10 +23,6 @@ ___CODE___
 ```javascript
 var parkVisitors = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
 
-parkVisitors.push("Mary");
-
-
-
 function findIndex(name){
  if((parkVisitors.indexOf(name)) === -1){
    console.log("Person not in line")
@@ -35,6 +31,12 @@ function findIndex(name){
  }
 };
 
+function removeVisitor(name){
+var visitorIndex = parkVisitors.indexOf(name)
+return(parkVisitors.splice(visitorIndex, 1))
+}
+
+parkVisitors.push("Mary");
 
 findIndex("Josh");
 
@@ -42,7 +44,7 @@ findIndex("Emily");
 
 parkVisitors.splice(1, 0, "Melissa");
 
-parkVisitors.splice(4, 1)
+removeVisitor("Patrick");
 
 console.log(parkVisitors);
 
