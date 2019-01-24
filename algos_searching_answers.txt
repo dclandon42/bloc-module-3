@@ -1,0 +1,66 @@
+Short Answer
+
+1.What is a real-life scenario that uses linear search?
+If we are in a library and we are around a bunch of students and you can't yell, but you're trying to find a student named Dan. You would have to individually go around and ask each student if their name is Dan until you find Dan and can stop.
+
+2. What is a real-life scenario that uses binary search?
+Searching for a book in a library we use binary search to an extent. We look for the first letter in the authors name on a shelf, then we look to the middle of the shelf to see if the second letter in the authors name is higher or lower alphabetically and continue doing this till we find our book. 
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using linear search?
+It would take seven iterations. 
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations would it take to find the value G using binary search?
+It would take three iterations
+
+5. Given an unsorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+I would use a linear search because the data is unsorted meaning a binary search would not know what is the "upper" or "lower" halves of the data to divide into.
+
+6. Given a sorted collection of a million items, which algorithm would you choose between linear search and binary search? Explain your reasoning.
+I would use a binary search. It would be much quicker to break the data down half at a time and because it is sorted it will allow a binary search to function properly.
+
+
+
+Programming Assignment:
+
+1. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
+
+var names = ["Albatross", "Baboon", "Cat", "Dog", "Falcon", "Killer Whale"];
+
+function WordSearch(arr, word){ 
+  var low = arr[0];
+  var high = arr[arr.length -1];
+
+  while (low <= high) {
+    var mid = (arr.indexOf(low) + arr.indexOf(high)) / 2;
+    mid = Math.round(mid);
+    
+    if(arr[mid] > word) { 
+      high = arr[mid -1];
+    } 
+    else if (arr[mid] < word) {
+      low = arr[mid + 1];
+    }
+    else {
+      return arr[mid];
+    }
+  }
+  return "That name is not in the list";
+}
+
+console.log(WordSearch(names, "Albatross"));
+
+2. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
+
+var fishTank = ["goldfish", "goldfish", "green swordtail", 
+			"commmon molly", "goldfish", "platy", "white-spotted goldfish"];
+
+function NetFish(arr, target){
+  for(var i = 0; i < arr.length; i++){
+    if (arr[i] === target){
+      return "You've net the only white-spotted goldfish from the fish tank";
+    }
+  }
+  return "The he only white-spotted goldfish isn't in the tank .";
+}
+
+console.log(NetFish(fishTank, "white-spotted goldfish"));
