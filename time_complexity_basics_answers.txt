@@ -60,7 +60,7 @@ FUNCTION fibonacci(number)
  END IF
 END FUNCTION
 
-It is a Logarithmic Growth Rate 0(log n).
+It is an Exponential Growth Rate 0(2^n).
 
 9. Out of the code snippets you just saw, which is the most time efficient?
 
