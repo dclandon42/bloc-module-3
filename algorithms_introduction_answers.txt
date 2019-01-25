@@ -4,40 +4,48 @@ Exercises
 
 ~Making coffee~
 check if we have beans
-if we have coffee beans then 
-take them then
-Grind coffee beans till texture is fine
+  IF we have coffee beans then 
+    take them then
+    Grind coffee beans till texture is fine
+  END IF
 Add ground coffee beans to filter
 Insert filter into top of coffee maker
 Add water till full
-Wait till coffee fills up pot
-else if no coffee beans then 
-return "No coffee today"
-END if
-If pot is full then
-pour cup of coffee.
-else wait till pot is full
-END IF 
+SET minutes to 0
+FOR minutes 0 to 10
+  IF coffeePot IS NOT full
+    Wait another minute
+  ELSE
+    Pour cup of coffee
+    Exit loop
+  END IF
+END FOR
 
 
 ~Washing dishes~
 Open dishwasher
-Put all medium-small dishes on the top rack
-Put all large dishes on the bottom rack
-Put all utensils in basket
-When dishwasher is full then 
+  IF dishwasher is empty THEN
+    Put all medium-small dishes on the top rack
+    Put all large dishes on the bottom rack
+    Put all utensils in basket
+  ELSE 
+    RETURN "Dishwasher is full
+  END IF 
 Add soap then
-start the dishwasher.
+  CALL start the dishwasher.
 
 A choice of your own.
 ~Watering a plant~
 Feel soil
-If soil is wet 
-Do not add water
-If soil is dry Then
-add water Then
-When water comes out of soil
-Stop watering.
+  IF soil is wet 
+    Do not addWater
+  ELSE soil is dry Then
+    addWater Then
+  END IF
+CALL addWater
+  IF water comes out of soil THEN
+    Stop watering.
+  END IF
 
 
 
