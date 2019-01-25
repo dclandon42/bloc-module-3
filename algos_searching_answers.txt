@@ -24,30 +24,27 @@ Programming Assignment:
 
 1. You and a friend have set a wager to see who can find the word "Albatross" in the dictionary the fastest. Write a program to allow you to win the bet.
 
-var names = ["Albatross", "Baboon", "Cat", "Dog", "Falcon", "Killer Whale"];
-
-function WordSearch(arr, word){ 
-  var low = arr[0];
-  var high = arr[arr.length -1];
-
-  while (low <= high) {
-    var mid = (arr.indexOf(low) + arr.indexOf(high)) / 2;
-    mid = Math.round(mid);
-    
-    if(arr[mid] > word) { 
-      high = arr[mid -1];
-    } 
-    else if (arr[mid] < word) {
-      low = arr[mid + 1];
-    }
-    else {
-      return arr[mid];
+function binarySearch(array, word) {
+  let left = 0
+  let right = array.length - 1
+  if(word < array[left] || word > array[right]) {
+    return false
+  }
+  while(left <= right) {
+    let middle = Math.floor((left + right)/2)
+    if(array[middle] === word) {
+      return middle
+    } else if(array[middle] < word) {
+      left = middle + 1
+    } else {
+      right = middle - 1
     }
   }
-  return "That name is not in the list";
+  return null
 }
 
-console.log(WordSearch(names, "Albatross"));
+let dictionary = ["Actually", "Age", "Albatross", "Brian", "Cat"];
+binarySearch(dictionary, "Albatross")
 
 2. You work at a pet store, and a child has asked you to net the only white-spotted goldfish from the fish tank. Write a program that will help you net the right fish.
 
