@@ -31,53 +31,62 @@ Objects are sort of a container within hash tables. Objects are a subset of hash
 
 6.Build a system that allows a sales associate to enter a customer's name, address, and phone number into the system and look up customers using their phone numbers. Store this information in a hash table.
 
-function hash(key, size) {
+var hash = (string, max) => {
   var hash = 0;
-  for(var i = 0; i < key.length; i++){
-    hash += key.charCodeAt(i);
+  for (var i = 0; i < string.length; i++) {
+    hash += string.charCodeAt(i);
   }
-  return hash % size;  
+  return hash % max;
 };
 
-function hashTable (){
-  var container = [];
-  var containerCap = 777;
-  
-  this.set = function(phone, name, customerAddress){
-    var index = hash(phone, containerCap);
+let HashTable = function() {
 
-    if (container[index] === undefined) {
-      container[index] = [ [phone, name, customerAddress] ];
-    }
-};
-  
-  this.get = function(phone){
-    var index = hash(phone, containerCap);
+  let storage = [];
+  const storageLimit = 100;
 
-    if(container[index] === undefined){
-      return "The list of customers is empty";
+  this.add = function(key,value) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      storage[index] = [
+        [key,value]
+      ];
     } else {
-      for(var i = 0; i < container[index].length; i++) {
-        if(container[index][i][0] === phone) {
-          return container[index][i][0] + ", " + container[index][i][1] + ", " + container[index][i][2];
-        } else {
-          return "Customer does not exist";
+      var inserted = false;
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index][i][1] = value;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        storage[index].push([key,value]);
+      }
+    }
+  };
+
+  this.lookup = function(key) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      return undefined;
+    } else {
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          return storage[index][i][1];
         }
       }
     }
   };
-}
 
-var customers = new hashTable();
-customers.set("999-999-9999", "Alex", "123 Random St");
-customers.set("222-222-2222", "Sam", "456 Some Ln");
-customers.set("333-333-3333", "Todd", "789 Nowhere Dr");
-customers.set("555-555-5555", "Josh", "012 Circle Ct");
+};
 
-console.log(customers.get("999-999-9999"));
-console.log(customers.get("222-222-2222")); 
-console.log(customers.get("333-333-3333")); 
-console.log(customers.get("555-555-5555"));
+var ht = new HashTable();
+ht.add(99999,{name:'Ronald', address:' 1000 Greenland St.'})
+ht.add(1000,{name:'John',address:'200 Toronto Ave.'});
+ht.add(5000,{name:'Mike',address:'354 Gerard St.'});
+
+console.log(ht.lookup(99999));
+console.log(ht.lookup(5000));
+console.log(ht.lookup(1000));
 
 7.Build a system that allows a store owner to track their store's inventory using a hash table for storage.
 
