@@ -2,7 +2,7 @@ Exercises
 
 What is a binary tree and what makes it unique to other trees?
 
-A binary search tree is a hierarchecal structure consisting of a root node that can have two child nodes and each child node can have two.
+A binary search tree is a hierarchical structure consisting of a root node that can have two child nodes and each child node can have two.
 
 What is a heuristic? A heuristic is a best guess that an algorithm makes in order to solve a complex problem sooner but sacrifices accuracy.
 
@@ -28,20 +28,19 @@ For the following questions, describe in words how you could solve the problem a
 
 Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
 
-function search(num) {
-   var current = this.root;
-      if(current == null){
-         return false;
-      } else {
-         while (current.num != num) { 
-            if (num < current.num) { 
-               current = current.left; 
-            } else { 
-                current = current.right; 
-            }  
-      } 
-      return current; 
-   }
+function findNumber(numberToFind) {
+  var currentNode = this.root;
+
+  while (currentNode != null) {
+    if (numberToFind === currentNode.value) {
+      return "The value " + currentNode.value + " exists in the list";
+    } else if (numberToFind < currentNode.value){
+      currentNode = currentNode.left;
+    } else {
+      currentNode = currentNode.right;
+    }
+  }
+  return "The value " + numberToFind + " does not exist in the list";
 }
 
 
@@ -53,32 +52,36 @@ If both keys are greater than current node, we move to right child of current no
 If both keys are smaller than current node, we move to left child of current node.
 If one keys is smaller and other key is greater, current node is Lowest Common Ancestor (LCA) of two nodes. We find distances of current node from two keys and return sum of the distances.
 
-function commonAncestor(root, num1, num2) {
-	if (!root) return;
-	var val = root.data;
-  if (num1 === val || num2 === val) {
-    return val;
-  }
-	if (num1 < val && num2 < val) {
-		return commonAncestor(root.left, num1, num2);
-	}
-	if (num1 > val && num2 > val) {
-		return commonAncestor(root.right, num1, num2);
-	}
-	console.log('lowest common ancestor value: ', val);
-	return root;
+function getDistanace(root, node1, node2) {
+
+  var ancestor = LCA(root, node1, node2);
+  var depth1 = getDepth(root, ancestor); 
+  var depth2 = getDepth(root, node1); 
+  var depth3 = getDepth(root, node2); 
+
+  return depth2 + depth3 - 2 * depth1;
 }
 
-function countAncestors (root, data) {
-		let current = this.root;
-    let count = 0
-		while (current) {
-			if (data === current.data) {
-        console.log(count)
-				return true;
-			}
-			current = data < current.data ? current.left : current.right;
-      count ++
-		}
-		return false;
-	};
+function LCA(currentNode, node1, node2) {
+  if (currentNode == null)
+    return null;
+  if (currentNode == node1 || currentNode == node2)
+    return currentNode;
+  var left = LCA(currentNode.left, node1, node2); 
+  var right = LCA(currentNode.right, node1, node2); 
+  if(left != null && right != null)
+    return currentNode;
+  return left == null? right: left;
+}
+
+function getDepth(currentNode, targetNode) {
+  if (currentNode == null)
+    return -1;
+  if (currentNode == targetNode)
+    return 0;
+  var left = getDepth(currentNode.left, targetNode);
+  var right = getDepth(currentNode.right, targetNode);
+  if (left == -1 && right == -1)
+    return -1;
+  return left == -1? right + 1: left + 1;
+}
