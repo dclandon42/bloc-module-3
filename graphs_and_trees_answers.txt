@@ -26,62 +26,57 @@ Programming Questions
 
 For the following questions, describe in words how you could solve the problem and then do so.
 
-Given a Binary Search Tree and a value, write a function that checks to see whether the value exists within the tree.
+1. Using a while loop with a nested if statement, I am checking if the value entered matches a value in the tree.
 
-function findNumber(numberToFind) {
-  var currentNode = this.root;
-
-  while (currentNode != null) {
-    if (numberToFind === currentNode.value) {
-      return "The value " + currentNode.value + " exists in the list";
-    } else if (numberToFind < currentNode.value){
-      currentNode = currentNode.left;
+function searchTree (value) {
+	let current = tree;
+  while (current) {
+  	if(current.value == value) {
+    	return true;
+    } else if (current.value > value) {
+    	current = current.left;
     } else {
-      currentNode = currentNode.right;
+    	current = current.right;
     }
   }
-  return "The value " + numberToFind + " does not exist in the list";
+  return false;
 }
 
+console.log(searchTree(1));
+console.log(searchTree(2));
 
-Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance between the two nodes.
+2. First, I am using the getPath function to find the value then push its path into an array. Then there is a function that compares indices in the array to find the last common denominator. Then adding up the distance based on the number of remaining indices.
 
-Example: The distance between the nodes 4 and 10 is 4. The distance between the nodes 8 and 10 is 1. The distance between the nodes 1 and 14 is 4.
-
-If both keys are greater than current node, we move to right child of current node.
-If both keys are smaller than current node, we move to left child of current node.
-If one keys is smaller and other key is greater, current node is Lowest Common Ancestor (LCA) of two nodes. We find distances of current node from two keys and return sum of the distances.
-
-function getDistanace(root, node1, node2) {
-
-  var ancestor = LCA(root, node1, node2);
-  var depth1 = getDepth(root, ancestor); 
-  var depth2 = getDepth(root, node1); 
-  var depth3 = getDepth(root, node2); 
-
-  return depth2 + depth3 - 2 * depth1;
+function getPath (value) {
+	let current = tree;
+  var array = ['tree'];
+  while (current) {
+  	if(current.value == value) {
+    	array.push('value');
+    	return array;
+    } else if (current.value > value) {
+    	array.push('left');
+    	current = current.left;
+    } else {
+    	array.push('right')
+    	current = current.right;
+    }
+  }
+  return false;
 }
 
-function LCA(currentNode, node1, node2) {
-  if (currentNode == null)
-    return null;
-  if (currentNode == node1 || currentNode == node2)
-    return currentNode;
-  var left = LCA(currentNode.left, node1, node2); 
-  var right = LCA(currentNode.right, node1, node2); 
-  if(left != null && right != null)
-    return currentNode;
-  return left == null? right: left;
+function findDistance(n1, n2) {
+  var n1 = getPath(n1);
+  var n2 = getPath(n2);
+  
+  for (let i = 0; i < n1.length; i++) {
+    if(n1[i] !== n2[i]) {
+      var distance = ((n1.length - i) + (n2.length - i) - 2);
+      return distance;
+    }
+  }
+  
 }
 
-function getDepth(currentNode, targetNode) {
-  if (currentNode == null)
-    return -1;
-  if (currentNode == targetNode)
-    return 0;
-  var left = getDepth(currentNode.left, targetNode);
-  var right = getDepth(currentNode.right, targetNode);
-  if (left == -1 && right == -1)
-    return -1;
-  return left == -1? right + 1: left + 1;
-}
+console.log(findDistance(4, 10));
+console.log(findDistance(8, 10));
